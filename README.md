@@ -177,10 +177,18 @@ exit 0
 - متن زیر را برای حذف کردن استفاده میکنیم : 
 
 ```shell
-  echo > /etc/rc.localv2
+  echo > /etc/rc.local
   sudo mv /root/rc.local.old /etc/rc.local
-  ip link show | awk '/6to4tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
-  ip link show | awk '/6to4tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
-  ip link show | awk '/GRE6Tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
-  ip link show | awk '/GRE6Tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+  ip link show | awk '/6to4_IN/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/6to4_IN/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+  ip link show | awk '/6to4_IN/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/6to4_IN/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+  ip link show | awk '/6to4_OUT/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/6to4_OUT/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+  ip link show | awk '/6to4_OUT/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/6to4_OUT/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+  ip link show | awk '/vxlan0/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/vxlan0/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+  ip link show | awk '/vxlan0/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/vxlan0/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
 ```
