@@ -172,3 +172,15 @@ exit 0
 ```
 
 بعد از reboot کردن سیستم تغییرات اعمال خواهند شد.
+
+
+- متن زیر را برای حذف کردن استفاده میکنیم : 
+
+```shell
+  echo > /etc/rc.localv2
+  sudo mv /root/rc.local.old /etc/rc.local
+  ip link show | awk '/6to4tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/6to4tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+  ip link show | awk '/GRE6Tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip link set {} down
+  ip link show | awk '/GRE6Tun_v2/ {split($2,a,"@"); print a[1]}' | xargs -I {} ip tunnel del {}
+```
